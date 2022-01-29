@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo app</title>
+</head>
+<body>
+    <div class="container">
+        <h1>My To Do List</h1>
+        <ul>
+        {% for i in all_items %}
+        <li>{{i.content}}
+                    <form action="/deleteTodoItem/{{i.id}}/" method = "post">{% csrf_token %}
+                <input type="submit" value="Delete">
+            </form>
+        </li>
+        {% endfor %}
+        </ul>
+        <form action="/addTodoItem/" method = "post">
+            {% csrf_token %}
+        <input type="text" name="content">
+        <input type="submit" value="Add Todo Item">
+        </form>
+    </div>
+</body>
+    <style>
+        body{
+            background: linear-gradient(to left, #1a7763, #2c822c);
+        }
+        input[type=text]{
+            padding: 10px;
+            border-radius: 2px;
+            border: 1px solid gray;
+            margin-bottom: 5px;
+            margin-left: 10px;
+        }
+        input[type=submit]{
+            padding: 10px;
+            background: #51b151;
+            color: azure;
+            font-weight: 700;
+            font-family: Cavello;
+            border: none;
+            border-radius: 2px;
+            margin-bottom: 5px;
+            margin-left: 10px;
+        }
+        li {
+            list-style-type: decimal;
+            margin: 5px;
+            font-weight: 700;
+            font-family: "Cavello";
+            font-size: large;
+            border: 3px solid #e27114;
+            background: #5fc1c1;
+            color: #464141;
+        }
+        .container {
+            margin: 50px;
+            border: 5px solid darkslategray;
+            background: #f0bfbf;
+        }
+        h1 {
+            font-family: Kaufmann;
+            border: 3px solid azure;
+            background: darkslategray;
+            color: #e3bdbd;
+        }
+    </style>
+</html>
